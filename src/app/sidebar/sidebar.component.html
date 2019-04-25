@@ -1,0 +1,32 @@
+<nav>
+    <div style="display:flex;" *ngIf="auth.user  | async ; else login">
+        <ion-label id="sidebarTitle">Hello {{name}}</ion-label>
+        <hr>
+        <ion-button (click)="auth.signOut()">Sign out</ion-button>
+    </div>
+
+    <ng-template  #login>
+      <div [ngStyle]="{'visibility': loginCheck ? 'visible' : 'hidden'}" style="display:flex;">
+        <ion-label id="sidebarTitle">Login please!</ion-label>
+        <hr>
+        <ion-button (click)="auth.signInWithEmail({email: 'colinshonaman@brilliantlabs.ca', password: 'testtt'})">Loginnow</ion-button>
+      </div>
+    </ng-template>
+
+    
+
+
+    <ul>
+      <li>
+        <a routerLink="/tabs">
+          <i class="material-icons">supervised_user_circle</i>
+        </a>
+      </li>
+      <li>
+          <a routerLink="/recipes">
+            <i class="material-icons">message</i>
+          </a>
+        </li>
+    </ul>
+</nav>
+

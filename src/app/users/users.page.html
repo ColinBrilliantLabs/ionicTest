@@ -1,0 +1,91 @@
+<ion-app>
+
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>
+                Tab Two
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+
+        <ion-grid>
+            <ion-row>
+                <ion-col size-md="6">
+
+                    <ion-card>
+
+                        <ion-card-header>
+                            Loading: {{loading === true}}
+                        </ion-card-header>
+
+                        <div *ngIf="!loading">
+                                <ion-card *ngFor="let item of users; let i = index;" >
+                                        <ion-label>
+                                                <ion-item>
+                                                    {{item.task}}
+                                                    <h1 button [routerLink]="['/details', item.docId]">{{item.name}}</h1>
+                                                </ion-item>
+                                                
+                                                <ion-item *ngFor="let pet of item.pets">
+                                                    <p>Name: {{pet.name }}, Species: {{pet.species}}</p>
+                                                    <ion-button *ngIf="(auth.user | async)?.docId == item.docId" (click)="deletePet(pet.docId)" class="delete-pet-button" color="danger"><ion-icon  name="close"></ion-icon></ion-button>
+                                                </ion-item>
+            
+                                                <ion-item *ngIf="(auth.user | async)?.docId == item.docId">
+                                                    <ion-grid>
+                                                        <ion-row>
+                                                            <ion-col  size-md="4">
+                                                                <ion-input [(ngModel)]="petsToAdd[i].name" placeholder="Animal Name" type="text"></ion-input>
+                                                            </ion-col>
+                                                            <ion-col size-md="4">
+                                                                <ion-input [(ngModel)]="petsToAdd[i].species" placeholder="Animal Species" type="text"></ion-input>
+                                                            </ion-col>
+                                                            <ion-col offset-xs='8' size-xs="4" size-md="4">
+                                                                <ion-button (click)="addPet(item.docId,i)">Add Pet</ion-button>
+                                                                <ion-button  (click)="callEditUser(item)" >Edit User</ion-button>
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-grid>
+            
+                                                </ion-item>
+                                            
+                                        </ion-label>
+                                    </ion-card>
+            
+                                    <ion-card>
+                                        <h2 margin>Add User:</h2>
+                                        <ion-item>
+                                                <ion-input [(ngModel)]="name" placeholder="Users name"></ion-input>
+                                                <ion-button (click)="addUser()" color="primary">
+                                                    Add
+                                                    <ion-icon name="checkmark" slot="end">
+                                
+                                                    </ion-icon>
+                                                </ion-button>
+                                                
+                                        </ion-item>
+            
+                                        
+                                    </ion-card>
+                        </div>
+
+                        
+
+		            </ion-card>
+
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+  
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button routerLink="/details" routerDirection="forward">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </ion-content>
+</ion-app>

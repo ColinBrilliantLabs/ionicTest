@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -17,11 +17,17 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'users',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../users/users.module#UsersPageModule',
+           
+          }
+          ,
+          {
+            path: 'edit/:id',
+            loadChildren: '../users/user-details/user-details.module#UserDetailsPageModule'
           }
         ]
       },
@@ -41,11 +47,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
+
 ];
 
 @NgModule({

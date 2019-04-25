@@ -1,0 +1,19 @@
+
+
+<ion-content>
+
+    <ion-item>
+
+        <ion-button (click)="previous()">Previous</ion-button>
+        
+        <ion-input [(ngModel)]="user.docId" *ngIf="index == 0"></ion-input>
+        <ion-input [(ngModel)]="user.name" *ngIf="index == 1"></ion-input>
+        <ion-input [(ngModel)]="user.age" *ngIf="index == 2"></ion-input>
+
+        <ion-button (click)="next()">Next</ion-button>
+
+    </ion-item>
+    
+
+
+</ion-content>

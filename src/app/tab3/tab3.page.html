@@ -1,9 +1,74 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
+
+    <ion-toolbar color="primary">
+        <ion-title>
+            Tab Three
+        </ion-title>
+    </ion-toolbar>
+
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+
+                <ion-card>
+
+                    <ion-card-header>
+                        New Expense
+                    </ion-card-header>
+
+                    <ion-card-content>
+
+                        <ion-item>
+                            <ion-label position="floating">Expense Reason</ion-label>
+                            <ion-input [(ngModel)]="expenseReason" type="text"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label position="floating">Expense Amount</ion-label>
+                            <ion-input [(ngModel)]="expenseAmount" type="number"></ion-input>
+                        </ion-item>
+
+                        <div id="expense-buttons-container" text-right>
+
+                            <ion-button (click)="clear()" fill="outline" color="danger">
+                                <ion-icon slot="start" name="close"></ion-icon>Clear
+                            </ion-button>
+                            <ion-button (click)="addExpense()">
+                                <ion-icon slot="start" name="add"></ion-icon>Add Expense
+                            </ion-button>
+
+                        </div>
+
+                    </ion-card-content>
+
+                </ion-card>
+
+
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+                <ion-list *ngFor="let expense of currentExpenses">
+                    <ion-item>
+                        {{expense.reason}}: ${{expense.amount}}
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+                <p margin>Total Expenses: ${{getTotalExpenses()}}</p>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
+</ion-content>
